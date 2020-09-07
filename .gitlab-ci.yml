@@ -356,7 +356,7 @@ Doc Check Java11:
     - jabba use ${JAVA_VERSION}
     - cat /sys/fs/cgroup/memory/memory.limit_in_bytes
     - java -XX:+PrintFlagsFinal -version | grep -Ei "maxheapsize|maxram"
-    - mvn -ntp -Dmaven.test.skip=true -Pjavadoc verify javadoc:javadoc
+    - mvn -ntp --settings scripts/mvn-release-settings.xml -Dmaven.test.skip=true -Pjavadoc verify javadoc:javadoc
 
 UnitTests:Java11:
   image: maven:3.6-jdk-11-slim
@@ -471,6 +471,16 @@ build_dockerhub_image_develop:
     DOCKER_TAG: develop
   <<: *push_dockerhub_images
 
+build_dockerhub_image_keycloak-develop:
+  stage: "Package"
+  except:
+    - schedules
+  only:
+    - DM_keycloak-develop
+  variables:
+    DOCKER_TAG: keycloak-develop
+  <<: *push_dockerhub_images
+
 deploy_openshift_develop:
   stage: "Deploy"
   except:
@@ -526,9 +536,9 @@ deploy_openshift_modelbank_keycloak_dev:
   cache: {}
   dependencies: []
   only:
-    - develop
+    - DM_keycloak-develop
   variables:
-    DOCKER_TAG: develop # Dockerhub source tag
+    DOCKER_TAG: keycloak-develop # Dockerhub source tag
     OPENSHIFT_NAMESPACE: ${OPENSHIFT_NAMESPACE_MODELBANK_KEYCLOAK_DEV} # Openshift target namespace
   <<: *deploy_openshift
 
