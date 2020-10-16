@@ -70,4 +70,9 @@ public class TppUsersController implements TppUsersRestApi {
     public ResponseEntity<Boolean> changeStatus(String userId) {
         return userMgmtStaffRestClient.changeStatus(userId);
     }
+
+    @Override
+    public ResponseEntity<Void> resetPasswordViaEmail(String login) {
+        return userMgmtRestClient.resetPasswordViaEmail(login);
+    }
 }
