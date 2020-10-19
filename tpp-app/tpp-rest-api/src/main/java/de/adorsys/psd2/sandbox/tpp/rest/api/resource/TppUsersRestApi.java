@@ -9,6 +9,8 @@ import io.swagger.annotations.Authorization;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.print.attribute.standard.Media;
+
 @Api(tags = "TPP Users management")
 public interface TppUsersRestApi {
     String BASE_PATH = "/tpp/users";
@@ -51,7 +53,7 @@ public interface TppUsersRestApi {
     @PostMapping("/status")
     ResponseEntity<Boolean> changeStatus(@RequestParam(value = USER_ID) String userId);
 
-    @ApiOperation(value = "Send link to update password", authorizations = @Authorization(value = "apiKey"))
-    @PostMapping("/reset/password/{login}")
+    @ApiOperation(value = "Send link to update password")
+    @PostMapping(value = "/reset/password/{login}")
     ResponseEntity<Void> resetPasswordViaEmail(@PathVariable("login") String login);
 }

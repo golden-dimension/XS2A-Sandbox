@@ -34,6 +34,7 @@ public class ObaAuthorizationApiController implements ObaAuthorizationApi {
 
     @Override
     public ResponseEntity<Void> resetPasswordViaEmail(String login) {
-        return userMgmtRestClient.resetPasswordViaEmail(login);
+        userMgmtRestClient.resetPasswordViaEmail(login);
+        return ResponseEntity.noContent().build();
     }
 }

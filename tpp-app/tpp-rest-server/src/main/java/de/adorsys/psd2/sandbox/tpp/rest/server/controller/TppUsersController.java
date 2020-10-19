@@ -18,6 +18,7 @@ import java.util.Optional;
 
 import static de.adorsys.ledgers.middleware.api.domain.um.UserRoleTO.CUSTOMER;
 import static java.util.Collections.singletonList;
+import static org.springframework.http.HttpStatus.NO_CONTENT;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
@@ -73,6 +74,7 @@ public class TppUsersController implements TppUsersRestApi {
 
     @Override
     public ResponseEntity<Void> resetPasswordViaEmail(String login) {
-        return userMgmtRestClient.resetPasswordViaEmail(login);
+        userMgmtRestClient.resetPasswordViaEmail(login);
+        return new ResponseEntity<>(NO_CONTENT);
     }
 }
