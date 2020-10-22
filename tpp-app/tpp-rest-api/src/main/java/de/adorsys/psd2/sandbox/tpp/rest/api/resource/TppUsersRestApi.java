@@ -9,8 +9,6 @@ import io.swagger.annotations.Authorization;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.print.attribute.standard.Media;
-
 @Api(tags = "TPP Users management")
 public interface TppUsersRestApi {
     String BASE_PATH = "/tpp/users";
