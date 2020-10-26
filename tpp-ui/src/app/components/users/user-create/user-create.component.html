@@ -180,6 +180,15 @@
                 <div class="col-12 col-md-8">
                   <div [formGroupName]="i" class="form-group">
                     <label class="control-label" for="scaData">SCA</label>
+                    <select
+                      *ngIf="scaDataItem.get('scaMethod').value === 'PUSH_OTP'"
+                      formControlName="pushMethod"
+                      class="form-control"
+                    >
+                      <option value="POST">POST</option>
+                      <option value="PUT">PUT</option>
+                    </select>
+
                     <input
                       [ngClass]="{
                         'is-invalid': scaDataItem.controls['methodValue'].errors
@@ -188,7 +197,11 @@
                       class="form-control"
                       formControlName="methodValue"
                       id="scaData"
-                      placeholder="Please input SCA method for user"
+                      [placeholder]="
+                        scaDataItem.get('scaMethod').value === 'PUSH_OTP'
+                          ? url
+                          : 'Please input SCA method for user'
+                      "
                       type="text"
                     />
                     <div
