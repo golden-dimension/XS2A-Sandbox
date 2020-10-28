@@ -10,6 +10,7 @@ import { Observable, of, Subscriber } from 'rxjs';
 import { ADMIN_KEY } from '../../../commons/constant/constant';
 import { mergeMap } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
+import { HttpMethod } from '../../../models/http-method';
 
 @Component({
   selector: 'app-user-create',
@@ -25,6 +26,7 @@ export class UserCreateComponent implements OnInit {
   dataSource: Observable<User[]>;
   admin: string;
   methods: string[];
+  httpMethods: string[];
   userForm: FormGroup;
   submitted: boolean;
   asyncSelected: string;
@@ -55,7 +57,6 @@ export class UserCreateComponent implements OnInit {
   }
 
   public getStatesAsObservable(token: string): Observable<User[]> {
-    console.log('token', token);
     const query = new RegExp(token, 'i');
 
     return of(
@@ -163,9 +164,11 @@ export class UserCreateComponent implements OnInit {
 
   updateValue() {
     const body = this.userForm.value as User;
-    console.log(this.userForm.value);
     body.scaUserData.forEach((d) => {
-      if (d.pushMethod !== '') {
+      if (d.scaMethod === 'PUSH_OTP') {
+        if (d.pushMethod == '' || d.pushMethod == undefined) {
+          d.pushMethod = 'POST';
+        }
         d.methodValue = d.pushMethod + ',' + d.methodValue;
       }
       d.pushMethod = undefined;
@@ -208,6 +211,7 @@ export class UserCreateComponent implements OnInit {
 
   getMethodsValues() {
     this.methods = Object.keys(ScaMethods);
+    this.httpMethods = Object.keys(HttpMethod);
   }
 
   onCancel() {

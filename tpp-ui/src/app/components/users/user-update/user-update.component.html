@@ -88,9 +88,11 @@
                 </div>
               </div>
               <div class="row">
-                <button class="btn btn-primary mr-4 ml-3"
-                        (click)=resetPasswordViaEmail(user.login)
-                        type="button">
+                <button
+                  class="btn btn-primary mr-4 ml-3"
+                  (click)="resetPasswordViaEmail(user.login)"
+                  type="button"
+                >
                   Send password update link
                 </button>
               </div>
@@ -138,6 +140,19 @@
                     <label class="control-label" for="scaData{{ i }}"
                       >Method Value</label
                     >
+                    <select
+                      formControlName="pushMethod"
+                      class="form-control"
+                      *ngIf="scaDataItem.get('scaMethod').value === 'PUSH_OTP'"
+                    >
+                      <option
+                        *ngFor="let httpMethod of httpMethods"
+                        [selected]="
+                          httpMethod == scaDataItem.get('pushMethod').value
+                        "
+                        >{{ httpMethod }}</option
+                      >
+                    </select>
                     <input
                       [ngClass]="{
                         'is-invalid':

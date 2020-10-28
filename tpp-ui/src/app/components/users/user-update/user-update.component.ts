@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User, UserResponse } from '../../../models/user.model';
+import { User } from '../../../models/user.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { ScaMethods } from '../../../models/scaMethods';
 import { TppUserService } from '../../../services/tpp.user.service';
 import { TppManagementService } from '../../../services/tpp-management.service';
-import {ADMIN_KEY} from "../../../commons/constant/constant";
-import {InfoService} from "../../../commons/info/info.service";
+import { ADMIN_KEY } from '../../../commons/constant/constant';
+import { InfoService } from '../../../commons/info/info.service';
+import { ScaUserData } from '../../../models/sca-user-data.model';
+import { HttpMethod } from '../../../models/http-method';
 
 @Component({
   selector: 'app-user-update',
@@ -21,6 +23,7 @@ export class UserUpdateComponent implements OnInit {
   user: User;
   updateUserForm: FormGroup;
   methods: string[];
+  httpMethods: string[];
 
   userId: string;
   public submitted: boolean;
@@ -60,16 +63,18 @@ export class UserUpdateComponent implements OnInit {
       this.getUserById();
     });
   }
+
   getUserById() {
     this.userService
       .getUser(this.userId)
       .subscribe((user: User) => (this.user = user));
   }
+
   setupUserFormControl(): void {
     this.updateUserForm = this.formBuilder.group({
       scaUserData: this.formBuilder.array([]),
       email: ['', [Validators.required, Validators.email]],
-      login: ['', Validators.required]
+      login: ['', Validators.required],
     });
   }
 
@@ -89,6 +94,8 @@ export class UserUpdateComponent implements OnInit {
       login: this.updateUserForm.get('login').value,
       scaUserData: this.updateUserForm.get('scaUserData').value,
     };
+
+    this.updateValue(updatedUser);
 
     if (this.admin === 'true') {
       this.tppManagementService
@@ -118,6 +125,7 @@ export class UserUpdateComponent implements OnInit {
       usesStaticTan: [false],
       decoupled: [false],
       valid: [false],
+      pushMethod: [''],
     });
 
     scaData
@@ -169,11 +177,32 @@ export class UserUpdateComponent implements OnInit {
       });
       const scaUserData = <FormArray>this.updateUserForm.get('scaUserData');
       this.user.scaUserData.forEach((value, i) => {
+        this.extractScaData(value);
         if (scaUserData.length < i + 1) {
           scaUserData.push(this.initScaData());
         }
         scaUserData.at(i).patchValue(value);
       });
+    });
+  }
+
+  extractScaData(data: ScaUserData) {
+    if (data.scaMethod === 'PUSH_OTP') {
+      let strings = data.methodValue.split(',');
+      data.pushMethod = strings[0];
+      data.methodValue = strings[1];
+    }
+  }
+
+  updateValue(user: User) {
+    user.scaUserData.forEach((d) => {
+      if (d.scaMethod == 'PUSH_OTP') {
+        if (d.pushMethod === '' || d.pushMethod == undefined) {
+          d.pushMethod = 'POST';
+        }
+        d.methodValue = d.pushMethod + ',' + d.methodValue;
+      }
+      d.pushMethod = undefined;
     });
   }
 
@@ -189,6 +218,7 @@ export class UserUpdateComponent implements OnInit {
 
   getMethodsValues() {
     this.methods = Object.keys(ScaMethods);
+    this.httpMethods = Object.keys(HttpMethod);
   }
 
   onCancel() {
@@ -197,9 +227,12 @@ export class UserUpdateComponent implements OnInit {
 
   resetPasswordViaEmail(login: string) {
     this.tppUserService.resetPasswordViaEmail(login).subscribe(() => {
-      this.infoService.openFeedback('Link for password reset was sent, check email.', {
-        severity: 'info',
-      });
+      this.infoService.openFeedback(
+        'Link for password reset was sent, check email.',
+        {
+          severity: 'info',
+        }
+      );
     });
   }
 }
