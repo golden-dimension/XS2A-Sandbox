@@ -1,3 +1,4 @@
 {
-  "certGenEnabled": "true"
+  "certGenEnabled": "true",
+  "tppBackendBasePath": "https://dev-modelbank-keycloak-tpprestserver.cloud.adorsys.de"
 }

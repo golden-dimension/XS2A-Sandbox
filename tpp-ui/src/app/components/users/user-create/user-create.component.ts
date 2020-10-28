@@ -9,8 +9,8 @@ import { TppManagementService } from '../../../services/tpp-management.service';
 import { Observable, of, Subscriber } from 'rxjs';
 import { ADMIN_KEY } from '../../../commons/constant/constant';
 import { mergeMap } from 'rxjs/operators';
-import { environment } from '../../../../environments/environment';
 import { HttpMethod } from '../../../models/http-method';
+import { SettingsService } from '../../../services/settings.service';
 
 @Component({
   selector: 'app-user-create',
@@ -19,7 +19,7 @@ import { HttpMethod } from '../../../models/http-method';
 })
 export class UserCreateComponent implements OnInit {
   public url =
-    '{Your TPP Backend baseUrl}' + `${environment.tppBackend}` + '/push/tan';
+    `${this.settingsService.settings.tppBackendBasePath}` + '/push/tan';
   public error: string;
   id: string;
   users: User[];
@@ -38,7 +38,8 @@ export class UserCreateComponent implements OnInit {
     private router: Router,
     private infoService: InfoService,
     private route: ActivatedRoute,
-    private tppManagementService: TppManagementService
+    private tppManagementService: TppManagementService,
+    private settingsService: SettingsService
   ) {
     this.dataSource = new Observable((observer: Subscriber<string>) => {
       observer.next(this.asyncSelected);
@@ -168,6 +169,9 @@ export class UserCreateComponent implements OnInit {
       if (d.scaMethod === 'PUSH_OTP') {
         if (d.pushMethod == '' || d.pushMethod == undefined) {
           d.pushMethod = 'POST';
+        }
+        if (d.methodValue === '' || d.methodValue === undefined) {
+          d.methodValue = this.url;
         }
         d.methodValue = d.pushMethod + ',' + d.methodValue;
       }

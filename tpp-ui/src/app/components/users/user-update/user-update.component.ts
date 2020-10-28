@@ -11,6 +11,7 @@ import { ADMIN_KEY } from '../../../commons/constant/constant';
 import { InfoService } from '../../../commons/info/info.service';
 import { ScaUserData } from '../../../models/sca-user-data.model';
 import { HttpMethod } from '../../../models/http-method';
+import { SettingsService } from '../../../services/settings.service';
 
 @Component({
   selector: 'app-user-update',
@@ -18,6 +19,8 @@ import { HttpMethod } from '../../../models/http-method';
   styleUrls: ['./user-update.component.scss'],
 })
 export class UserUpdateComponent implements OnInit {
+  public url =
+    `${this.settingsService.settings.tppBackendBasePath}` + '/push/tan';
   admin: string;
   tppId: string;
   user: User;
@@ -36,7 +39,8 @@ export class UserUpdateComponent implements OnInit {
     private tppManagementService: TppManagementService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private infoService: InfoService
+    private infoService: InfoService,
+    private settingsService: SettingsService
   ) {
     this.user = new User();
   }
@@ -199,6 +203,9 @@ export class UserUpdateComponent implements OnInit {
       if (d.scaMethod == 'PUSH_OTP') {
         if (d.pushMethod === '' || d.pushMethod == undefined) {
           d.pushMethod = 'POST';
+        }
+        if (d.methodValue === '' || d.methodValue === undefined) {
+          d.methodValue = this.url;
         }
         d.methodValue = d.pushMethod + ',' + d.methodValue;
       }
