@@ -1,4 +1,4 @@
 {
   "certGenEnabled": "true",
-  "tppBackendBasePath": "https://dev-modelbank-keycloak-tpprestserver.cloud.adorsys.de"
+  "tppBackendBasePath": "http://localhost:8093"
 }

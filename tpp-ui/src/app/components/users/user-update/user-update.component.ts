@@ -20,7 +20,7 @@ import { SettingsService } from '../../../services/settings.service';
 })
 export class UserUpdateComponent implements OnInit {
   public url =
-    `${this.settingsService.settings.tppBackendBasePath}` + '/push/tan';
+    `${this.settingsService.settings.tppBackendBasePath}` + '/tpp/push/tan';
   admin: string;
   tppId: string;
   user: User;

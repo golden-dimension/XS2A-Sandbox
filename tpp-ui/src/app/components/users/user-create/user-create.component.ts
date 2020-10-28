@@ -19,7 +19,7 @@ import { SettingsService } from '../../../services/settings.service';
 })
 export class UserCreateComponent implements OnInit {
   public url =
-    `${this.settingsService.settings.tppBackendBasePath}` + '/push/tan';
+    `${this.settingsService.settings.tppBackendBasePath}` + '/tpp/push/tan';
   public error: string;
   id: string;
   users: User[];
