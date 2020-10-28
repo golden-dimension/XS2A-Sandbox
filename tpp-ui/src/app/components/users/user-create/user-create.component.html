@@ -181,12 +181,15 @@
                   <div [formGroupName]="i" class="form-group">
                     <label class="control-label" for="scaData">SCA</label>
                     <select
-                      *ngIf="scaDataItem.get('scaMethod').value === 'PUSH_OTP'"
                       formControlName="pushMethod"
                       class="form-control"
+                      *ngIf="scaDataItem.get('scaMethod').value === 'PUSH_OTP'"
                     >
-                      <option value="POST">POST</option>
-                      <option value="PUT">PUT</option>
+                      <option
+                        *ngFor="let httpMethod of httpMethods"
+                        [selected]="httpMethod == 'POST'"
+                        >{{ httpMethod }}</option
+                      >
                     </select>
 
                     <input
