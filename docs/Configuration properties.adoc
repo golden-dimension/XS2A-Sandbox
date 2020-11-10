@@ -25,6 +25,7 @@
 3+^|*TPP server properties*
 
 |ledgers.url | Link to ledgers | http://localhost:8088
+|app.endpoints.tpp.self.registration.disabled | Enables/disables TPP self-registration | FALSE
 
 |keycloak.auth-server-url | Link to IDP | http://localhost:8080/auth
 |keycloak.realm | Realm in IDP | ledgers
