@@ -51,35 +51,35 @@ public class DecoupledServiceImpl implements DecoupledService {
 
     @Override
     public boolean executeDecoupledOpr(DecoupledConfRequest request, String token) {
-        BearerTokenTO scaToken = tokenService.exchangeToken(token, request.getAuthorizationTTL(), Constants.SCOPE_SCA);
-        authInterceptor.setAccessToken(scaToken.getAccess_token());
-        GlobalScaResponseTO response = redirectScaClient.validateScaCode(request.getAuthorizationId(), request.getAuthCode()).getBody();
-        authInterceptor.setAccessToken(response.getBearerToken().getAccess_token());
+        try {
+            BearerTokenTO scaToken = tokenService.exchangeToken(token, request.getAuthorizationTTL(), Constants.SCOPE_SCA);
+            authInterceptor.setAccessToken(scaToken.getAccess_token());
+            GlobalScaResponseTO response = redirectScaClient.validateScaCode(request.getAuthorizationId(), request.getAuthCode()).getBody();
+            authInterceptor.setAccessToken(response.getBearerToken().getAccess_token());
 
-        if (EnumSet.of(OpTypeTO.PAYMENT, OpTypeTO.CANCEL_PAYMENT).contains(request.getOpType())) {
-            String transactionStatus = executePaymentOperation(request, response);
-            updateCmsForPayment(request.getAddressedUser(), response, transactionStatus);
-        } else {
-            updateCmForConsent(request.getAddressedUser(), response);
+            if (EnumSet.of(OpTypeTO.PAYMENT, OpTypeTO.CANCEL_PAYMENT).contains(request.getOpType())) {
+                String transactionStatus = executePaymentOperation(request, response);
+                updateCmsForPayment(request.getAddressedUser(), response, transactionStatus);
+            } else {
+                updateCmForConsent(request.getAddressedUser(), response);
+            }
+        } finally {
+            authInterceptor.setAccessToken(null);
         }
-        authInterceptor.setAccessToken(null);
         return true;
     }
 
     @Nullable
     private String executePaymentOperation(DecoupledConfRequest request, GlobalScaResponseTO response) {
-        SCAPaymentResponseTO executionResponse = null;
-        if (request.isConfirmed()) {
-            executionResponse = request.getOpType() == OpTypeTO.PAYMENT
-                                    ? paymentRestClient.executePayment(request.getObjId()).getBody()
-                                    : paymentRestClient.executeCancelPayment(request.getObjId()).getBody();
-        } else {
-            if (request.getOpType() == OpTypeTO.PAYMENT) {
-                executionResponse = paymentRestClient.executeCancelPayment(request.getObjId()).getBody();
-            }
+        SCAPaymentResponseTO executionResponse = request.isConfirmed() && request.getOpType() == OpTypeTO.PAYMENT
+                                                     ? paymentRestClient.executePayment(request.getObjId()).getBody()
+                                                     : paymentRestClient.executeCancelPayment(request.getObjId()).getBody();
+
+        if (!request.isConfirmed()) {
             response.setScaStatus(ScaStatusTO.FAILED);
             response.setBearerToken(null);
         }
+
         return Optional.ofNullable(executionResponse)
                    .map(SCAPaymentResponseTO::getTransactionStatus)
                    .map(Enum::name)

@@ -7,8 +7,8 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
-import static de.adorsys.ledgers.oba.rest.server.ws.Constants.REGISTRY_URL;
-import static de.adorsys.ledgers.oba.rest.server.ws.Constants.SUBSCRIPTION_URL;
+import static de.adorsys.ledgers.oba.rest.server.ws.WebSocketConstants.WS_REGISTRY_URL;
+import static de.adorsys.ledgers.oba.rest.server.ws.WebSocketConstants.WS_SUBSCRIPTION_URL;
 
 @Configuration
 @EnableWebSocketMessageBroker
@@ -18,12 +18,12 @@ public class SocketBrokerConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
         config.setApplicationDestinationPrefixes("/app")
-            .enableSimpleBroker(SUBSCRIPTION_URL);
+            .enableSimpleBroker(WS_SUBSCRIPTION_URL);
     }
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint(REGISTRY_URL)
+        registry.addEndpoint(WS_REGISTRY_URL)
             .setAllowedOrigins("*")
             .setHandshakeHandler(handler);
     }
