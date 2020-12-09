@@ -38,13 +38,6 @@ describe('ConsentsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-    it('should get the Consents', () => {
-        let mockConsent = {}
-        let consentSpy = spyOn(onlineBankingService, 'getConsents').and.returnValue(of({mockConsent}));
-      component.getConsents();
-      expect(consentSpy).toHaveBeenCalled();
-    });
-
     it('should call the consent if enabled', () => {
         let mockConsent: ObaAisConsent= {
             aisAccountConsent: {
@@ -79,18 +72,6 @@ describe('ConsentsComponent', () => {
         }
       const result = component.revokeConsent(mockConsent);
       expect(result).toBe(false);
-    });
-
-    it('should revoke the consent when consent is valid and Success', () => {
-        let mockConsent: ObaAisConsent= {
-            aisAccountConsent: {
-                consentStatus : 'VALID'
-            }
-        }
-        let revokeSpy = spyOn(onlineBankingService, 'revokeConsent').and.returnValue(of(true));
-        let consentSpy = spyOn(component, 'getConsents');
-        component.revokeConsent(mockConsent);
-        expect(consentSpy).toHaveBeenCalled();
     });
 
     it('should revoke the consent when consent is valid and Success', () => {
