@@ -155,6 +155,7 @@
       <span class="checkmark"></span>
     </label>
     <select
+      [id]="item.key"
       *ngIf="isBooleanValue(item); else regularInput"
       [(ngModel)]="item.value"
       (change)="changeBooleanHeader(item.key, $event.target.value)"
