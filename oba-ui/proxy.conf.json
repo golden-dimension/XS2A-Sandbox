@@ -8,6 +8,16 @@
     "pathRewrite": {
       "^/oba-proxy": ""
     }
+  },
+  "/ledgers/*": {
+    "target": "http://localhost:8088",
+    "secure": false,
+    "changeOrigin": true,
+    "ws": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/ledgers": ""
+    }
   }
 }
 

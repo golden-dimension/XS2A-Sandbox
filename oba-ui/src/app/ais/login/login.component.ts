@@ -38,8 +38,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private shareService: ShareDataService,
     private onlineBankingOauthAuthorizationService: OnlineBankingOauthAuthorizationService,
-    private aisService: AisService,
-    private PSUAISService: PSUAISProvidesAccessToOnlineBankingAccountFunctionalityService
+    private aisService: AisService
   ) {}
 
   ngOnInit() {

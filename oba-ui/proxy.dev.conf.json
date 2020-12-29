@@ -8,6 +8,16 @@
     "pathRewrite": {
       "^/oba-proxy": ""
     }
+  },
+  "/ledgers/*": {
+    "target": "https://dev-dynamicsandbox-ledgers.cloud.adorsys.de",
+    "secure": true,
+    "changeOrigin": true,
+    "ws": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/ledgers": ""
+    }
   }
 }
 

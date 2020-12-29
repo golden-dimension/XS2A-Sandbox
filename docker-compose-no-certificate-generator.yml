@@ -164,6 +164,7 @@ services:
     environment:
       ONLINE_BANKING_SERVER_URL: "http://xs2a-online-banking:8090"
       DEV_PORTAL_URL_EXT: "http://localhost:4206"
+      LEDGERS_URL: "http://ledgers:8088"
     depends_on:
       - xs2a-online-banking
       - developer-portal-ui

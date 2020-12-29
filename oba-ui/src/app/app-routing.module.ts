@@ -16,99 +16,103 @@ import {UserProfileUpdateComponent} from './oba/user-profile-update/user-profile
 const externalUrlProvider = new InjectionToken('externalUrlRedirectResolver');
 
 export const routes: Routes = [
-    {
-        path: 'login',
-        component: LoginComponent
-    },
-    {
-        path: 'reset-password',
-        component: ResetPasswordComponent
-    },
-    {
-        path: 'confirm-password',
-        component: ConfirmPasswordComponent
-    },
-    {
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'reset-password',
+    component: ResetPasswordComponent
+  },
+  {
+    path: 'confirm-password',
+    component: ConfirmPasswordComponent
+  },
+  {
+    path: '',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
         path: '',
-        component: DashboardComponent,
-        canActivate: [AuthGuard],
-        children: [
-            {
-                path: '',
-                pathMatch: 'full',
-                redirectTo: 'accounts'
-            },
-            {
-                path: 'consents',
-                component: ConsentsComponent
-            },
-            {
-                path: 'accounts',
-                component: AccountsComponent
-            },
-            {
-              path: 'profile' ,
-              component: UserProfileComponent
-            },
-            {
-              path: 'profile-edit' ,
-              component: UserProfileUpdateComponent
-            },
-            {
-                path: 'accounts/:id',
-                component: AccountDetailsComponent
-            },
-            {
-                path: 'periodic-payments',
-                component: PeriodicPaymentsComponent
-            },
-        ]
-    },
-    {
-        path: 'auth',
-        loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
-    },
-    {
-        path: 'account-information',
-        loadChildren: () => import('./ais/ais.module').then(m => m.AisModule)
-    },
-    {
-        path: 'payment-initiation',
-        loadChildren: () => import('./pis/pis.module').then(m => m.PisModule)
-    },
-    {
-        path: 'payment-cancellation',
-        loadChildren: () => import('./payment-cancellation/payment-cancellation.module').then(m => m.PaymentCancellationModule)
-    },
-    {
-        path: 'externalRedirect',
-        canActivate: [externalUrlProvider],
-        component: LoginComponent
-    },
-    {
-        path: '**',
-        redirectTo: '/login'
-    }
+        pathMatch: 'full',
+        redirectTo: 'accounts'
+      },
+      {
+        path: 'consents',
+        component: ConsentsComponent
+      },
+      {
+        path: 'accounts',
+        component: AccountsComponent
+      },
+      {
+        path: 'profile',
+        component: UserProfileComponent
+      },
+      {
+        path: 'profile-edit',
+        component: UserProfileUpdateComponent
+      },
+      {
+        path: 'accounts/:id',
+        component: AccountDetailsComponent
+      },
+      {
+        path: 'periodic-payments',
+        component: PeriodicPaymentsComponent
+      },
+    ]
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
+  {
+    path: 'account-information',
+    loadChildren: () => import('./ais/ais.module').then(m => m.AisModule)
+  },
+  {
+    path: 'payment-initiation',
+    loadChildren: () => import('./pis/pis.module').then(m => m.PisModule)
+  },
+  {
+    path: 'payment-cancellation',
+    loadChildren: () => import('./payment-cancellation/payment-cancellation.module').then(m => m.PaymentCancellationModule)
+  },
+  {
+    path: 'emails/email',
+    loadChildren: () => import('./email-verification/email-verification.module').then(m => m.EmailVerificationModule)
+  },
+  {
+    path: 'externalRedirect',
+    canActivate: [externalUrlProvider],
+    component: LoginComponent
+  },
+  {
+    path: '**',
+    redirectTo: '/login'
+  }
 
 ];
 
 @NgModule({
-    declarations: [],
-    imports: [
-        RouterModule.forRoot(routes)
-    ],
-    exports: [
-        RouterModule
-    ],
-    providers: [
-        {
-            provide: externalUrlProvider,
-            useValue: (route: ActivatedRouteSnapshot) => {
-                const externalUrl = route.paramMap.get('externalUrl');
-                window.open(externalUrl, '_self');
-            },
-        },
-    ]
+  declarations: [],
+  imports: [
+    RouterModule.forRoot(routes)
+  ],
+  exports: [
+    RouterModule
+  ],
+  providers: [
+    {
+      provide: externalUrlProvider,
+      useValue: (route: ActivatedRouteSnapshot) => {
+        const externalUrl = route.paramMap.get('externalUrl');
+        window.open(externalUrl, '_self');
+      },
+    },
+  ]
 })
 
 export class AppRoutingModule {

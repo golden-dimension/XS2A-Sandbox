@@ -1,0 +1,26 @@
+<ng-container *ngIf="show">
+  <div class="logo-container" [routerLink]="['']">
+    <img class="logo" [src]="customizeService.getLogo()"/>
+  </div>
+
+  <div class="email-verification">
+
+    <h1>
+      <span *ngIf="!customizeService.isCustom()">adorsys </span>
+      Online banking
+    </h1>
+
+    <ng-container *ngIf="success; else error">
+      <h2 class="success">Email verification is successful</h2>
+      <p>Thank you! Your E-Mail was verified. You can login to your account now.</p>
+    </ng-container>
+
+    <ng-template #error>
+      <h2 class="fail">Email verification failed</h2>
+      <p>Looks like verification token is invalid or email is already confirmed. </p>
+      <p>Please, contact your administrator and try to verify your email again, if needed.</p>
+    </ng-template>
+
+    <button type="submit" class="btn btn-primary btn-block" [routerLink]="['login']">Go to Login page</button>
+  </div>
+</ng-container>
