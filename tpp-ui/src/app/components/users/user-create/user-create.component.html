@@ -169,7 +169,7 @@
             >
               <button
                 (click)="removeScaDataItem(i)"
-                *ngIf="userForm.controls['scaUserData'].controls.length"
+                *ngIf="userForm.controls['scaUserData']['controls'].length"
                 aria-label="Close"
                 class="close box__close-icon"
                 type="button"
@@ -292,8 +292,7 @@
           <button
             [disabled]="userForm.invalid"
             class="btn btn-primary"
-            type="submit"
-          >
+            type="submit">
             Submit
           </button>
         </div>

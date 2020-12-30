@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
@@ -52,7 +52,6 @@ export class UserCreateComponent implements OnInit {
   }
 
   public getStatesAsObservable(token: string): Observable<User[]> {
-    console.log('token', token);
     const query = new RegExp(token, 'i');
 
     return of(
