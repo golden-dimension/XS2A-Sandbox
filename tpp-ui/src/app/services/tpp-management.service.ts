@@ -199,7 +199,6 @@ export class TppManagementService {
       `${this.url}/admin/admins`,
       { params: params }
     ).pipe(map((resp) => {
-      console.log(resp);
       return {
         users: resp.content,
         totalElements: resp.totalElements,

@@ -58,14 +58,15 @@ export class UserProfileUpdateComponent implements OnInit, OnDestroy {
       this.userInfoService.getUserInfo()
         .pipe(takeUntil(this.unsubscribe$))
         .subscribe((user: User) => {
-        this.user = user;
+          this.user = user;
+          this.admin = user.userRoles.includes('SYSTEM') ? 'true' : 'false';
 
-        this.userForm.patchValue({
-          email: this.user.email,
-          username: this.user.login,
-          pin: this.user.pin,
+          this.userForm.patchValue({
+            email: this.user.email,
+            username: this.user.login,
+            pin: this.user.pin,
+          });
         });
-      });
     }
   }
 
@@ -79,7 +80,7 @@ export class UserProfileUpdateComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.submitted = true;
-    if (this.userForm.invalid) {
+    if (this.userForm.invalid || this.admin === undefined) {
       return;
     }
 
@@ -96,26 +97,25 @@ export class UserProfileUpdateComponent implements OnInit, OnDestroy {
     let restCall;
     if (this.admin === 'true') {
       restCall = this.tppManagementService.updateUserDetails(updatedUser, this.tppId);
-    } else if (this.admin === 'false') {
-      restCall =  this.userInfoService.updateUserInfo(updatedUser)
+    } else {
+      restCall = this.userInfoService.updateUserInfo(updatedUser);
     }
 
     restCall.pipe(takeUntil(this.unsubscribe$))
-        .subscribe(() => {
-          this.getUserDetails();
-          this.location.back();
-          this.infoService.openFeedback(
-            'The information has been successfully updated'
-          );
-        });
+      .subscribe(() => {
+        this.getUserDetails();
+        this.location.back();
+        this.infoService.openFeedback(
+          'The information has been successfully updated'
+        );
+      });
   }
 
   private getUserInfoForAdmin(tppId: string, adminSize?) {
     const restCall = adminSize ? this.tppManagementService.getAdminById(tppId, adminSize) : this.tppManagementService.getTppById(tppId);
-    if (this.admin === 'true') {
-      restCall
-        .pipe(takeUntil(this.unsubscribe$))
-        .subscribe((user: User) => {
+    restCall
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((user: User) => {
         if (user) {
           this.user = user;
           this.userForm.patchValue({
@@ -124,7 +124,6 @@ export class UserProfileUpdateComponent implements OnInit, OnDestroy {
           });
         }
       });
-    }
   }
 
   private setUpTppOrAdmin() {
