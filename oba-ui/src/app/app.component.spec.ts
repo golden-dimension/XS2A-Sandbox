@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -36,7 +36,7 @@ describe('AppComponent', () => {
     getLogo: () => '../assets/UI/Logo_XS2ASandbox.png',
   };
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent
@@ -67,7 +67,7 @@ describe('AppComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('Should include the < router-outlet >', async(() => {
+  it('Should include the < router-outlet >', waitForAsync(() => {
     fixture.detectChanges();
     const debugElement = fixture.debugElement.query(By.directive(RouterOutlet));
     expect(debugElement).not.toBeNull();

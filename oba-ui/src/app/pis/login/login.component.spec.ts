@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CustomizeService } from '../../common/services/customize.service';
@@ -27,7 +27,7 @@ describe('LoginComponent', () => {
   let router: Router;
   let route: ActivatedRoute;
   let infoService: InfoService;
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, ReactiveFormsModule, InfoModule],
       declarations: [LoginComponent],

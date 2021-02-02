@@ -1,5 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { OnlineBankingService } from '../../common/services/online-banking.service';
 import { AuthService } from '../../common/services/auth.service';
@@ -11,7 +11,7 @@ describe('AccountsComponent', () => {
   let onlineBankingService: OnlineBankingService
   const authServiceSpy = jasmine.createSpyObj('AuthService', ['getAuthorizedUser', 'isLoggedIn', 'logout']);
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ AccountsComponent ],
         imports: [RouterTestingModule, HttpClientTestingModule],

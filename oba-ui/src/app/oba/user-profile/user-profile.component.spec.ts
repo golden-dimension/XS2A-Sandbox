@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { UserProfileComponent } from './user-profile.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { UserTO } from '../../api/models/user-to';
@@ -26,7 +26,7 @@ describe('UserProfileComponent', () => {
     getCurrentUser: () => of(mockUser),
   };
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [UserProfileComponent],
       imports: [RouterTestingModule, HttpClientTestingModule],

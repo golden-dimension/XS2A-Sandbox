@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -24,7 +24,7 @@ describe('TanConfirmationComponent', () => {
   let pisService: PisService;
   let router: Router;
   let route: ActivatedRoute;
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, ReactiveFormsModule],
       declarations: [TanConfirmationComponent, PaymentDetailsComponent],
