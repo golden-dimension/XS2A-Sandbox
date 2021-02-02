@@ -48,29 +48,31 @@ describe('EmbPaymentInitCreatePostComponent', () => {
 
   const ToastrServiceStub = {};
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        EmbPaymentInitCreatePostComponent,
-        TranslatePipe,
-        PrettyJsonPipe,
-        MockPlayWithDataComponent,
-        LineCommandComponent,
-        CodeAreaComponent,
-      ],
-      providers: [TranslateService, DataService, { provide: ToastrService, useValue: ToastrServiceStub }],
-      imports: [
-        HttpClientTestingModule,
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient],
-          },
-        }),
-      ],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [
+          EmbPaymentInitCreatePostComponent,
+          TranslatePipe,
+          PrettyJsonPipe,
+          MockPlayWithDataComponent,
+          LineCommandComponent,
+          CodeAreaComponent,
+        ],
+        providers: [TranslateService, DataService, { provide: ToastrService, useValue: ToastrServiceStub }],
+        imports: [
+          HttpClientTestingModule,
+          TranslateModule.forRoot({
+            loader: {
+              provide: TranslateLoader,
+              useFactory: HttpLoaderFactory,
+              deps: [HttpClient],
+            },
+          }),
+        ],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     jsonService = TestBed.get(JsonService);

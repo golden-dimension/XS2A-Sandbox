@@ -90,23 +90,25 @@ describe('FooterComponent', () => {
     }
   }
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [FooterComponent, TranslatePipe],
-      imports: [
-        HttpClientTestingModule,
-        MarkdownModule.forRoot(),
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient],
-          },
-        }),
-      ],
-      providers: [TranslateService, { provide: CustomizeService, useValue: CustomizeServiceStub }],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [FooterComponent, TranslatePipe],
+        imports: [
+          HttpClientTestingModule,
+          MarkdownModule.forRoot(),
+          TranslateModule.forRoot({
+            loader: {
+              provide: TranslateLoader,
+              useFactory: HttpLoaderFactory,
+              deps: [HttpClient],
+            },
+          }),
+        ],
+        providers: [TranslateService, { provide: CustomizeService, useValue: CustomizeServiceStub }],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FooterComponent);

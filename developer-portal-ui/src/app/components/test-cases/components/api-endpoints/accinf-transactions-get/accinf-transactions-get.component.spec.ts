@@ -28,11 +28,13 @@ describe('AccinfTransactionsGetComponent', () => {
     }
   }
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [AccinfTransactionsGetComponent, LineCommandComponent, TranslatePipe, MockPlayWithDataComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [AccinfTransactionsGetComponent, LineCommandComponent, TranslatePipe, MockPlayWithDataComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AccinfTransactionsGetComponent);

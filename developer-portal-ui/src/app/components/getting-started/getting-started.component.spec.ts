@@ -17,25 +17,27 @@ describe('GettingStartedComponent', () => {
 
   const ToastrServiceStub = {};
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        NgxImageZoomModule,
-        RouterTestingModule,
-        MarkdownModule.forRoot(),
-        HttpClientTestingModule,
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient],
-          },
-        }),
-      ],
-      declarations: [GettingStartedComponent],
-      providers: [LanguageService, TranslateService, DataService, { provide: ToastrService, useValue: ToastrServiceStub }],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          NgxImageZoomModule,
+          RouterTestingModule,
+          MarkdownModule.forRoot(),
+          HttpClientTestingModule,
+          TranslateModule.forRoot({
+            loader: {
+              provide: TranslateLoader,
+              useFactory: HttpLoaderFactory,
+              deps: [HttpClient],
+            },
+          }),
+        ],
+        declarations: [GettingStartedComponent],
+        providers: [LanguageService, TranslateService, DataService, { provide: ToastrService, useValue: ToastrServiceStub }],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(GettingStartedComponent);

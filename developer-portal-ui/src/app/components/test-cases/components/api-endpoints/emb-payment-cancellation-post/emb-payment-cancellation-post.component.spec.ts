@@ -29,11 +29,13 @@ describe('EmbPaymentCancellationPostComponent', () => {
     }
   }
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [EmbPaymentCancellationPostComponent, MockPlayWithDataComponent, TranslatePipe, LineCommandComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [EmbPaymentCancellationPostComponent, MockPlayWithDataComponent, TranslatePipe, LineCommandComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(EmbPaymentCancellationPostComponent);

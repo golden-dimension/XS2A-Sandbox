@@ -26,31 +26,33 @@ describe('TestValuesComponent', () => {
     }
   }
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        BrowserModule,
-        FormsModule,
-        MarkdownModule.forRoot(),
-        HttpClientTestingModule,
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient],
-          },
-        }),
-      ],
-      providers: [
-        LanguageService,
-        TranslateService,
-        DataService,
-        { provide: ToastrService, useValue: ToastrServiceStub },
-        CertificateService,
-      ],
-      declarations: [TestValuesComponent, TranslatePipe],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          BrowserModule,
+          FormsModule,
+          MarkdownModule.forRoot(),
+          HttpClientTestingModule,
+          TranslateModule.forRoot({
+            loader: {
+              provide: TranslateLoader,
+              useFactory: HttpLoaderFactory,
+              deps: [HttpClient],
+            },
+          }),
+        ],
+        providers: [
+          LanguageService,
+          TranslateService,
+          DataService,
+          { provide: ToastrService, useValue: ToastrServiceStub },
+          CertificateService,
+        ],
+        declarations: [TestValuesComponent, TranslatePipe],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestValuesComponent);

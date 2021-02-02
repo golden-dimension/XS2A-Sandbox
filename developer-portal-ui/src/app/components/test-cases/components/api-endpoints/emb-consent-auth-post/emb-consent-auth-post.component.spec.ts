@@ -27,11 +27,13 @@ describe('EmbConsentAuthPostComponent', () => {
     }
   }
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [EmbConsentAuthPostComponent, TranslatePipe, LineCommandComponent, MockPlayWithDataComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [EmbConsentAuthPostComponent, TranslatePipe, LineCommandComponent, MockPlayWithDataComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(EmbConsentAuthPostComponent);

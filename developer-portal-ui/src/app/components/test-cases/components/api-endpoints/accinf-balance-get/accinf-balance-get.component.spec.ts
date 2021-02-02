@@ -26,11 +26,13 @@ describe('AccinfBalanceGetComponent', () => {
     }
   }
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [AccinfBalanceGetComponent, LineCommandComponent, TranslatePipe, MockPlayWithDataComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [AccinfBalanceGetComponent, LineCommandComponent, TranslatePipe, MockPlayWithDataComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AccinfBalanceGetComponent);

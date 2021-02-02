@@ -30,11 +30,13 @@ describe('EmbPaymentInitAuthPostComponent', () => {
     }
   }
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [EmbPaymentInitAuthPostComponent, TranslatePipe, MockPlayWithDataComponent, LineCommandComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [EmbPaymentInitAuthPostComponent, TranslatePipe, MockPlayWithDataComponent, LineCommandComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(EmbPaymentInitAuthPostComponent);

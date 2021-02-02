@@ -27,11 +27,13 @@ describe('EmbPaymentInitGetComponent', () => {
     }
   }
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [EmbPaymentInitGetComponent, MockPlayWithDataComponent, TranslatePipe, LineCommandComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [EmbPaymentInitGetComponent, MockPlayWithDataComponent, TranslatePipe, LineCommandComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(EmbPaymentInitGetComponent);

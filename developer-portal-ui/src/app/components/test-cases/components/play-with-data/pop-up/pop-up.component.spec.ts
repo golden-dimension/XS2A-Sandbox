@@ -14,13 +14,15 @@ describe('PopUpComponent', () => {
   let fixture: ComponentFixture<PopUpComponent>;
   const ToastrServiceStub = {};
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [PopUpComponent],
-      imports: [BrowserModule, FormsModule, HttpClientTestingModule],
-      providers: [CertificateService, DataService, { provide: ToastrService, useValue: ToastrServiceStub }, NgbModal],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [PopUpComponent],
+        imports: [BrowserModule, FormsModule, HttpClientTestingModule],
+        providers: [CertificateService, DataService, { provide: ToastrService, useValue: ToastrServiceStub }, NgbModal],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PopUpComponent);

@@ -49,30 +49,32 @@ describe('RdctPaymentInitiationPostComponent', () => {
 
   const ToastrServiceStub = {};
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        RdctPaymentInitiationPostComponent,
-        MockPlayWithDataComponent,
-        LineCommandComponent,
-        CodeAreaComponent,
-        TranslatePipe,
-        PrettyJsonPipe,
-        PrettyJsonPipe,
-      ],
-      providers: [TranslateService, DataService, { provide: ToastrService, useValue: ToastrServiceStub }],
-      imports: [
-        HttpClientTestingModule,
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient],
-          },
-        }),
-      ],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [
+          RdctPaymentInitiationPostComponent,
+          MockPlayWithDataComponent,
+          LineCommandComponent,
+          CodeAreaComponent,
+          TranslatePipe,
+          PrettyJsonPipe,
+          PrettyJsonPipe,
+        ],
+        providers: [TranslateService, DataService, { provide: ToastrService, useValue: ToastrServiceStub }],
+        imports: [
+          HttpClientTestingModule,
+          TranslateModule.forRoot({
+            loader: {
+              provide: TranslateLoader,
+              useFactory: HttpLoaderFactory,
+              deps: [HttpClient],
+            },
+          }),
+        ],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     jsonService = TestBed.get(JsonService);

@@ -25,11 +25,13 @@ describe('EmbConsentGetComponent', () => {
     }
   }
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [EmbConsentGetComponent, TranslatePipe, LineCommandComponent, MockPlayWithDataComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [EmbConsentGetComponent, TranslatePipe, LineCommandComponent, MockPlayWithDataComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(EmbConsentGetComponent);

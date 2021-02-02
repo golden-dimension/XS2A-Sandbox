@@ -107,39 +107,46 @@ describe('AppComponent', () => {
     }
   }
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [AppComponent, TranslatePipe, NavComponent, FooterComponent],
-      imports: [
-        MarkdownModule.forRoot(),
-        RouterTestingModule,
-        HttpClientTestingModule,
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient],
-          },
-        }),
-        NgHttpLoaderModule.forRoot(),
-      ],
-      providers: [
-        MarkdownService,
-        TranslateService,
-        { provide: DataService, useValue: DataServiceStub },
-        { provide: CustomizeService, useValue: CustomizeServiceStub },
-        { provide: LanguageService, useValue: LanguageServiceStub },
-      ],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [AppComponent, TranslatePipe, NavComponent, FooterComponent],
+        imports: [
+          MarkdownModule.forRoot(),
+          RouterTestingModule,
+          HttpClientTestingModule,
+          TranslateModule.forRoot({
+            loader: {
+              provide: TranslateLoader,
+              useFactory: HttpLoaderFactory,
+              deps: [HttpClient],
+            },
+          }),
+          NgHttpLoaderModule.forRoot(),
+        ],
+        providers: [
+          MarkdownService,
+          TranslateService,
+          { provide: DataService, useValue: DataServiceStub },
+          { provide: CustomizeService, useValue: CustomizeServiceStub },
+          { provide: LanguageService, useValue: LanguageServiceStub },
+        ],
+      }).compileComponents();
+    })
+  );
 
-  beforeEach(waitForAsync(() => {
-    fixture = TestBed.createComponent(AppComponent);
-    comp = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      fixture = TestBed.createComponent(AppComponent);
+      comp = fixture.componentInstance;
+      fixture.detectChanges();
+    })
+  );
 
-  it('should create', waitForAsync(() => {
-    expect(comp).toBeTruthy();
-  }));
+  it(
+    'should create',
+    waitForAsync(() => {
+      expect(comp).toBeTruthy();
+    })
+  );
 });

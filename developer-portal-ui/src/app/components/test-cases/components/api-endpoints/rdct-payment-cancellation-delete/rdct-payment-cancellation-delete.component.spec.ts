@@ -27,11 +27,13 @@ describe('RdctPaymentCancellationDeleteComponent', () => {
     }
   }
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [RdctPaymentCancellationDeleteComponent, MockPlayWithDataComponent, TranslatePipe, LineCommandComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [RdctPaymentCancellationDeleteComponent, MockPlayWithDataComponent, TranslatePipe, LineCommandComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RdctPaymentCancellationDeleteComponent);

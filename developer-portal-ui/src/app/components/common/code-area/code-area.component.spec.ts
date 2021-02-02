@@ -29,12 +29,14 @@ describe('CodeAreaComponent', () => {
 
   const ToastrServiceStub = {};
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [CodeAreaComponent, TranslatePipe, PrettyJsonPipe],
-      providers: [DataService, { provide: ToastrService, useValue: ToastrServiceStub }],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [CodeAreaComponent, TranslatePipe, PrettyJsonPipe],
+        providers: [DataService, { provide: ToastrService, useValue: ToastrServiceStub }],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CodeAreaComponent);

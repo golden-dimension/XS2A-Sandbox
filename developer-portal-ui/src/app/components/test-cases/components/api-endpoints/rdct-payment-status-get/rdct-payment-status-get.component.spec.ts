@@ -28,11 +28,13 @@ describe('RdctPaymentStatusGetComponent', () => {
     }
   }
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [RdctPaymentStatusGetComponent, MockPlayWithDataComponent, TranslatePipe, LineCommandComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [RdctPaymentStatusGetComponent, MockPlayWithDataComponent, TranslatePipe, LineCommandComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RdctPaymentStatusGetComponent);
