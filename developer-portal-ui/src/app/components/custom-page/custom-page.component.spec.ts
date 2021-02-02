@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { CustomPageComponent } from './custom-page.component';
 import { MarkdownModule } from 'ngx-markdown';
@@ -12,7 +12,7 @@ describe('CustomPageComponent', () => {
   let component: CustomPageComponent;
   let fixture: ComponentFixture<CustomPageComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [CustomPageComponent],
       imports: [

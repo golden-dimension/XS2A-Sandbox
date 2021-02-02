@@ -62,11 +62,12 @@ describe('AccountDetailsComponent', () => {
       details: '',
       linkedAccounts: '',
       balances: [],
+      creditLimit: BigInt(9007199254740991)
     };
     const accountSpy = spyOn(
       onlineBankingService,
       'getAccount'
-    ).and.returnValue(of({ mockAccount }));
+    ).and.returnValue(of( mockAccount ));
     component.getAccountDetail();
     expect(accountSpy).toHaveBeenCalled();
   });
@@ -76,7 +77,7 @@ describe('AccountDetailsComponent', () => {
     const transactionsSpy = spyOn(
       onlineBankingService,
       'getTransactions'
-    ).and.returnValue(of({ mockResponse }));
+    ).and.returnValue(of( mockResponse ));
     component.getTransactions(5, 10);
     expect(transactionsSpy).toHaveBeenCalled();
   });

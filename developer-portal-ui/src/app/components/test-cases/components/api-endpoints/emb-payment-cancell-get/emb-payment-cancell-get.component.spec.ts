@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { EmbPaymentCancellGetComponent } from './emb-payment-cancell-get.component';
 import { Component, Input, Pipe, PipeTransform } from '@angular/core';
@@ -29,7 +29,7 @@ describe('EmbPaymentCancellGetComponent', () => {
     }
   }
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [EmbPaymentCancellGetComponent, TranslatePipe, MockPlayWithDataComponent, LineCommandComponent],
     }).compileComponents();

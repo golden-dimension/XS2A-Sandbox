@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FundsConfirmationComponent } from './funds-confirmation.component';
 import { Component, Input, Pipe, PipeTransform } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -38,7 +38,7 @@ describe('FundsConfirmationComponent', () => {
     }
   }
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         FundsConfirmationComponent,

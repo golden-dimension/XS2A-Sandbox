@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { NavComponent } from './nav.component';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -98,7 +98,7 @@ describe('NavComponent', () => {
     getRouterUrl: () => '',
   };
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [NavComponent, TranslatePipe],
       imports: [

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { EmbeddedComponent } from './embedded.component';
 import { Pipe, PipeTransform } from '@angular/core';
@@ -21,10 +21,10 @@ describe('EmbeddedComponent', () => {
     }
   }
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        NgxImageZoomModule.forRoot(),
+        NgxImageZoomModule,
         MarkdownModule.forRoot(),
         HttpClientTestingModule,
         TranslateModule.forRoot({

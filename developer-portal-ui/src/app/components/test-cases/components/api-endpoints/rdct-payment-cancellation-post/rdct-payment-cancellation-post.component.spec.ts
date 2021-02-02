@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { RdctPaymentCancellationPostComponent } from './rdct-payment-cancellation-post.component';
 import { Component, Input, Pipe, PipeTransform } from '@angular/core';
@@ -48,7 +48,7 @@ describe('RdctPaymentCancellationPostComponent', () => {
 
   const ToastrServiceStub = {};
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         RdctPaymentCancellationPostComponent,

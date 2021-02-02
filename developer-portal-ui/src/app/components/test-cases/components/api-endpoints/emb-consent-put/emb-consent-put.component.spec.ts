@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, Input, Pipe, PipeTransform } from '@angular/core';
 
 import { EmbConsentPutComponent } from './emb-consent-put.component';
@@ -48,7 +48,7 @@ describe('EmbConsentPutComponent', () => {
 
   const ToastrServiceStub = {};
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         EmbConsentPutComponent,

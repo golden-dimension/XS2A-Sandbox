@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { EmbPaymentInitAuthPostComponent } from './emb-payment-init-auth-post.component';
 import { Component, Input, Pipe, PipeTransform } from '@angular/core';
@@ -30,7 +30,7 @@ describe('EmbPaymentInitAuthPostComponent', () => {
     }
   }
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [EmbPaymentInitAuthPostComponent, TranslatePipe, MockPlayWithDataComponent, LineCommandComponent],
     }).compileComponents();
