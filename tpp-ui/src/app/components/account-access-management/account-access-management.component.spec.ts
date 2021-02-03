@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import {User} from "../../models/user.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AccountAccessManagementComponent} from './account-access-management.component';
@@ -31,7 +31,7 @@ describe('AccountAccessManagementComponent', () => {
     let infoService: InfoService;
     let router: Router;
     let route: ActivatedRoute;
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             imports: [
                 ReactiveFormsModule,

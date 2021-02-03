@@ -1,5 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of, throwError } from 'rxjs';
@@ -19,7 +19,7 @@ describe('AccountDetailComponent', () => {
     let accountService: AccountService;
     let testDataGenerationService: TestDataGenerationService;
     let infoService: InfoService;
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             imports: [
                 RouterTestingModule.withRoutes([{path: 'accounts', component: AccountComponent}]),
