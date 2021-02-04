@@ -30,13 +30,15 @@ describe('LoginComponent', () => {
   let infoService: InfoService;
   let router: Router;
   let route: ActivatedRoute;
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [RouterTestingModule, ReactiveFormsModule, InfoModule],
-      declarations: [LoginComponent],
-      providers: [PisCancellationService, CustomizeService, PisService],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [RouterTestingModule, ReactiveFormsModule, InfoModule],
+        declarations: [LoginComponent],
+        providers: [PisCancellationService, CustomizeService, PisService],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginComponent);
@@ -83,7 +85,7 @@ describe('LoginComponent', () => {
       authorisationId: 'uwpgofowbOUIGb39845zt0owirhJHGVSgueif98200293',
     };
     const pisAuthSpy = spyOn(pisService, 'pisAuthCode').and.returnValue(
-      of(mockResponse)
+      of<any>(mockResponse)
     );
     component.encryptedPaymentId = mockResponse.encryptedPaymentId;
     component.redirectId = mockResponse.authorisationId;

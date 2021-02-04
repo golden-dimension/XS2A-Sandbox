@@ -26,18 +26,25 @@ describe('AccountComponent', () => {
   let modalService: NgbModal;
   let router: Router;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        HttpClientTestingModule,
-        InfoModule,
-        IconModule,
-      ],
-      declarations: [AccountComponent, ConvertBalancePipe],
-      providers: [AccountService, NgbModal, TppManagementService, InfoService],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          RouterTestingModule,
+          HttpClientTestingModule,
+          InfoModule,
+          IconModule,
+        ],
+        declarations: [AccountComponent, ConvertBalancePipe],
+        providers: [
+          AccountService,
+          NgbModal,
+          TppManagementService,
+          InfoService,
+        ],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AccountComponent);
@@ -201,6 +208,7 @@ describe('AccountComponent', () => {
         details: '',
         linkedAccounts: '',
         balances: [],
+        creditLimit: BigInt(9080809898098),
       },
       accesses: [
         {

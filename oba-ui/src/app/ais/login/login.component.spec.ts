@@ -27,13 +27,20 @@ describe('LoginComponent', () => {
   let shareDataService: ShareDataService;
   let router: Router;
   let route: ActivatedRoute;
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, RouterTestingModule, InfoModule],
-      declarations: [LoginComponent],
-      providers: [AisService, ShareDataService, CustomizeService, InfoService],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [ReactiveFormsModule, RouterTestingModule, InfoModule],
+        declarations: [LoginComponent],
+        providers: [
+          AisService,
+          ShareDataService,
+          CustomizeService,
+          InfoService,
+        ],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginComponent);
@@ -112,13 +119,13 @@ describe('LoginComponent', () => {
         'uzf7d5PJiuoui78owirhJHGVSgueif98200293uwpgofowbOUIGb39845zt0',
       redirectId: 'owirhJHGVSgueif98200293uwpgofowbOUIGb39845zt0',
       headers: {
-        get: (param) => {
+        get: param => {
           return 'auth_token';
         },
       },
     };
     const codeSpy = spyOn(aisService, 'aisAuthCode').and.returnValue(
-      of(mockAuthCodeResponse)
+      of<any>(mockAuthCodeResponse)
     );
     component.getAisAuthCode();
     expect(codeSpy).toHaveBeenCalled();

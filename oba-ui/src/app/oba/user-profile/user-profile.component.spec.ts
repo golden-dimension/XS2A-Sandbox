@@ -26,16 +26,18 @@ describe('UserProfileComponent', () => {
     getCurrentUser: () => of(mockUser),
   };
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [UserProfileComponent],
-      imports: [RouterTestingModule, HttpClientTestingModule],
-      providers: [
-        CurrentUserService,
-        { provide: CurrentUserService, useValue: mockObaUserService },
-      ],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [UserProfileComponent],
+        imports: [RouterTestingModule, HttpClientTestingModule],
+        providers: [
+          CurrentUserService,
+          { provide: CurrentUserService, useValue: mockObaUserService },
+        ],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(UserProfileComponent);
@@ -50,7 +52,7 @@ describe('UserProfileComponent', () => {
 
   it('should call getUserInfo()', () => {
     const accountsSpy = spyOn(mockObaService, 'getCurrentUser').and.returnValue(
-      of({ mockUser })
+      of<any>({ mockUser })
     );
     component.getUserInfo();
     expect(accountsSpy).toHaveBeenCalled();

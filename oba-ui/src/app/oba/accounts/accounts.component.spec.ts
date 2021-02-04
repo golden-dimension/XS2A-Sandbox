@@ -8,17 +8,24 @@ import { of } from 'rxjs';
 describe('AccountsComponent', () => {
   let component: AccountsComponent;
   let fixture: ComponentFixture<AccountsComponent>;
-  let onlineBankingService: OnlineBankingService
-  const authServiceSpy = jasmine.createSpyObj('AuthService', ['getAuthorizedUser', 'isLoggedIn', 'logout']);
+  let onlineBankingService: OnlineBankingService;
+  const authServiceSpy = jasmine.createSpyObj('AuthService', [
+    'getAuthorizedUser',
+    'isLoggedIn',
+    'logout',
+  ]);
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ AccountsComponent ],
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [AccountsComponent],
         imports: [RouterTestingModule, HttpClientTestingModule],
-        providers: [TestBed.overrideProvider(AuthService, {useValue: authServiceSpy})]
+        providers: [
+          TestBed.overrideProvider(AuthService, { useValue: authServiceSpy }),
+        ],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AccountsComponent);
@@ -31,27 +38,34 @@ describe('AccountsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-    it('should get the accounts list', () => {
-      let mockAccounts = [{
-          id: '123456',
-          iban: 'DE35653635635663',
-          bban: 'BBBAN',
-          pan: 'pan',
-          maskedPan: 'maskedPan',
-          currency: 'EUR',
-          msisdn: 'MSISDN',
-          name: 'Pupkin',
-          product: 'Deposit',
-          accountType: 'CASH',
-          accountStatus: 'ENABLED',
-          bic: 'BIChgdgd',
-          usageType: 'PRIV',
-          details: '',
-          linkedAccounts: '',
-          balances: []
-      }];
-        let accountsSpy = spyOn(onlineBankingService, 'getAccounts').and.returnValue(of({mockAccounts}));
-        component.getAccounts();
-        expect(accountsSpy).toHaveBeenCalled();
-    });
+  it('should get the accounts list', () => {
+    let mockAccounts = [
+      {
+        id: '123456',
+        iban: 'DE35653635635663',
+        bban: 'BBBAN',
+        pan: 'pan',
+        maskedPan: 'maskedPan',
+        currency: 'EUR',
+        msisdn: 'MSISDN',
+        name: 'Pupkin',
+        product: 'Deposit',
+        accountType: 'CASH',
+        accountStatus: 'ENABLED',
+        bic: 'BIChgdgd',
+        usageType: 'PRIV',
+        details: '',
+        linkedAccounts: '',
+        balances: [],
+      },
+    ];
+    let accountsSpy = spyOn(
+      onlineBankingService,
+      'getAccounts'
+    ).and.returnValue(
+      of<any>({ mockAccounts })
+    );
+    component.getAccounts();
+    expect(accountsSpy).toHaveBeenCalled();
+  });
 });

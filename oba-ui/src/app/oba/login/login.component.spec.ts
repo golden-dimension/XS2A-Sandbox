@@ -10,13 +10,15 @@ describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let authService: AuthService;
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, RouterTestingModule, InfoModule],
-      declarations: [LoginComponent],
-      providers: [AuthService],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [ReactiveFormsModule, RouterTestingModule, InfoModule],
+        declarations: [LoginComponent],
+        providers: [AuthService],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginComponent);
@@ -31,7 +33,7 @@ describe('LoginComponent', () => {
 
   it('should call the on submit', () => {
     const loginSpy = spyOn(authService, 'login').and.returnValue(
-      of({ success: true })
+      of<any>({ success: true })
     );
     component.onSubmit();
     expect(loginSpy).toHaveBeenCalled();
