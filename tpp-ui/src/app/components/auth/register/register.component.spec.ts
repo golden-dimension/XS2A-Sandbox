@@ -269,6 +269,9 @@ describe('RegisterComponent', () => {
     component.userForm.controls['pin'].setValue('1234');
     component.onSubmit();
     tick(2000);
-    expect(navigationSpy).toHaveBeenCalledWith(fakeUrl, message);
+    expect(navigationSpy).toHaveBeenCalledWith({
+      navigateUrl: fakeUrl,
+      message: message,
+    });
   }));
 });
