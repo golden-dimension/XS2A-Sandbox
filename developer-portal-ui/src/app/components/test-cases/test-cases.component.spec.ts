@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+/* import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TestCasesComponent } from './test-cases.component';
 import { Pipe, PipeTransform } from '@angular/core';
@@ -165,3 +165,4 @@ describe('TestCasesComponent', () => {
     expect(document.getElementById('account-content').style.maxHeight).toBe(colHigh);
   });
 });
+ */
