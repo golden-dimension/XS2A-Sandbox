@@ -64,7 +64,6 @@ describe('AccountDetailsComponent', () => {
       details: '',
       linkedAccounts: '',
       balances: [],
-      creditLimit: BigInt(9007199254740991),
     };
     const accountSpy = spyOn(
       onlineBankingService,
