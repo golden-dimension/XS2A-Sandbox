@@ -358,9 +358,9 @@ class ConsentServiceTest {
                                                               consent.setId(String.valueOf(i));
                                                               return consent;
                                                           }).collect(Collectors.toList());
-        ResponseData<Collection<CmsAisAccountConsent>> consentResponse = ResponseData.list(collection, new CmsPageInfo(0, 10, 10), null);
+        ResponseDataMixIn<Collection<CmsAisAccountConsent>> consentResponse = /*ResponseDataMixIn.list(collection, new CmsPageInfo(0, 10, 10), null);*/new ResponseDataMixIn(collection,new CmsPageInfo(0, 10, 10), null);
         when(cmsAspspAisClient.getConsentsByPsu(any(), any(), anyString(), any(), any(), any(), any(), any(), any(), any()))
-            .thenReturn((ResponseDataMixIn<Collection<CmsAisAccountConsent>>) consentResponse);
+            .thenReturn(consentResponse);
         CustomPageImpl<ObaAisConsent> result = consentService.getListOfConsentsPaged(USER_LOGIN, 0, 10);
         assertEquals(10, result.getNumberOfElements());
         assertEquals(0, result.getNumber());
