@@ -10,3 +10,4 @@ Current version consists of following components:
 
 - Migrated to latest XS2A version 8.6
 - Updated Ledgers version to 3.13
+- Updated mapstruct to v 1.4.1-Final
